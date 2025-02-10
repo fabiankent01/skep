@@ -1,0 +1,502 @@
+@import url('https://fonts.googleapis.com/css2?family=Afacad+Flux:wght@100..1000&display=swap');
+
+body{
+    font-family: "Afacad Flux", serif;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+header {
+  display: flex;
+  justify-content: flex-start; /* Aligns items to the left */
+  align-items: center;
+  padding: 10px 30px; /* Adjusted padding */
+  background-color: black;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+.nav-link.active {
+    font-weight: bold; /* Makes the text bold */
+    color: rgb(113, 216, 119); /* Optional: Change text color */
+}
+/* Logo and Brand Name */
+#logo {
+  width: 40px; /* Adjust logo size */
+  height: auto;
+}
+
+#logo_name {
+  display: flex;
+  align-items: center;
+  margin-left: 15px; /* Moves text closer to logo */
+}
+
+#logo_name p {
+  margin: 0 0 0 5px; /* Adjust spacing */
+  font-family: "Afacad Flux", serif;
+  font-size: 24px; /* Increase font size */
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.918);
+}
+
+/* Navigation Menu */
+nav {
+  display: flex;
+  align-items: center;
+  gap: 30px; /* Increase spacing between links */
+  font-family: "Afacad Flux", serif; /* Matches company name font */
+  margin-left: auto; /* Pushes nav to the right */
+}
+
+.nav-link {
+  text-decoration: none;
+  color: #fff;
+  font-size: 19px;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+  color: #b8b8b8; /* Hover effect */
+}
+
+/* Dropdown Menu */
+.nav-item {
+  position: relative;
+}
+
+.nav-item > .nav-link::after {
+  content: '\2BC6'; /* Unicode for a downward caret ▼ */
+  font-size: 12px;
+  margin-left: 5px;
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: #000000fb; /* Darker background */
+  min-width: 160px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.nav-item:hover .dropdown-menu {
+  display: block;
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.dropdown-menu a {
+  color: #fff;
+  padding: 10px;
+  display: block;
+  transition: background 0.3s ease;
+  text-decoration: none;
+}
+
+.dropdown-menu a:hover {
+  background: #050303; /* Hover effect */
+  color: #b8b8b8;
+}
+
+.box1 {
+    position: relative; /* Establishes a positioning context for the overlay */
+    width: 100%; /* Adjust to desired size */
+}
+.title{
+    position: absolute; /* Allows overlay to stack on top of the image */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(8, 8, 8, 0.541); /* Black with 50% opacity */
+    justify-content: center; /* Horizontally center text */
+    z-index: 2; /* Ensure it appears on top of the image */
+}
+#title {
+    font-family: "Afacad Flux", serif;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.918);
+    font-size: 70px;
+    margin: 150px 50px 0 50px;
+    line-height: 1;
+    text-align: right;
+}
+.title p {
+    font-family: "Afacad Flux", serif;
+    font-weight: 600;
+    color:rgba(255, 255, 255, 0.918);
+    font-size: 20px;
+    text-align: left;
+    margin: 50px 50px 0 400px;
+    text-align: right;
+}
+.cows{
+    width: 100%; /* Make image responsive */
+    height: auto; /* Maintain aspect ratio */
+    display: block;
+}
+.product-block {
+    padding: 20px;
+    margin: -20px 0px -20px 0px;
+    font-family: "Afacad Flux", serif;
+    font-weight: 600;
+    font-size: 20px;
+    text-align: center;
+    background-color: white;
+    color: #2e7d32;
+}
+
+
+.container {
+    width: 90%;
+    max-width: 1100px;
+    margin: auto;
+    text-align: center;
+    padding: 50px 20px;
+}
+
+/* Welcome Section */
+.welcome {
+    background: #2e7d32; /* Green Theme */
+    color: #fff;
+    padding: 10px 20px;
+}
+
+.welcome h1 {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+}
+
+.welcome p {
+    font-size: 1.2em;
+}
+
+/* Projects Section */
+.projects h2,
+.testimonials h2,
+.impact-stats h2 {
+    font-size: 2.1em;
+    margin-top: -20px;
+    margin-bottom: 20px;
+    color: #2e7d32;
+}
+
+.grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: -50px;
+}
+
+.project-item {
+    max-width: 30%;
+    background: #fff;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+    text-align: center;
+    width: 300px;
+}
+
+.carousel {
+    position: relative;
+    width: 100%;
+    height: 300px; /* Increased height for better visibility */
+    overflow: hidden;
+    border-radius: 12px; /* Soft rounded corners for a sleek look */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.carousel img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+
+.carousel img:first-child {
+    opacity: 1;
+}
+
+/* Navigation Arrows */
+.carousel .prev, .carousel .next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 20px;
+    border-radius: 50%;
+    transition: 0.3s;
+}
+
+.carousel .prev { left: 10px; }
+.carousel .next { right: 10px; }
+
+.carousel .prev:hover, .carousel .next:hover {
+    background: rgba(0, 0, 0, 0.8);
+}
+
+/* Dot Indicators */
+.carousel-dots {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+}
+
+.carousel-dots span {
+    width: 10px;
+    height: 10px;
+    background: #bbb;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.carousel-dots .active {
+    background: #2d6a4f;
+    transform: scale(1.2);
+}
+
+/* Lightbox Full-Screen View */
+.lightbox {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.lightbox.show {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* Lightbox Image */
+.lightbox img {
+    max-width: 90%;
+    max-height: 90%;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(255, 255, 255, 0.3);
+    transition: transform 0.3s ease-in-out;
+}
+
+/* Navigation Buttons */
+.lightbox .prev, .lightbox .next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.5);
+    color: black;
+    border: none;
+    padding: 10px 15px;
+    font-size: 24px;
+    cursor: pointer;
+    border-radius: 50%;
+    transition: 0.3s;
+}
+
+.lightbox .prev { left: 20px; }
+.lightbox .next { right: 20px; }
+
+.lightbox .prev:hover, .lightbox .next:hover {
+    background: rgba(255, 255, 255, 0.8);
+}
+
+/* Close Button */
+.lightbox .close-btn {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    font-size: 30px;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.lightbox .close-btn:hover {
+    color: #ff5757;
+}
+
+
+
+.project-item h3 {
+    font-size: 1.8em;
+    color: #1b4332;
+    margin-top: 15px;
+}
+.project-item p {
+    font-size: 1.1em;
+    color: #555;
+    margin-top: 10px;
+}
+/* Testimonials Section */
+.testimonials {
+    background: #fff;
+    padding: 60px 20px;
+}
+
+.testimonial-item {
+    background: #f9f9f9;
+    padding: 20px;
+    margin: 20px auto;
+    max-width: 700px;
+    border-radius: 12px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+.testimonial-item p {
+    font-size: 1.2em;
+    font-style: italic;
+}
+
+.testimonial-item h4 {
+    margin-top: 10px;
+    font-weight: bold;
+    color: #2e7d32;
+}
+
+/* Impact Statistics */
+.impact-stats {
+    background: #2e7d32;
+    color: white;
+    padding: 0px 20px;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.stat {
+    text-align: center;
+    flex: 1;
+    min-width: 200px;
+}
+
+.stat h3 {
+    font-size: 2.5em;
+    margin-bottom: 5px;
+}
+
+.stat p {
+    font-size: 1.2em;
+}
+/* Get Involved Section */
+.get-involved {
+    background: #f9f9f9;
+    text-align: center;
+    padding: 30px 20px;
+}
+
+.get-involved h2 {
+    font-size: 2.5em;
+    color: #2e7d32;
+    margin-bottom: 15px;
+}
+
+.get-involved p {
+    font-size: 1.2em;
+    color: #555;
+    max-width: 800px;
+    margin: 0 auto 40px;
+}
+
+/* Involvement Options */
+.involvement-options {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+}
+
+.involve-item {
+    background: #ffffff;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    max-width: 300px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.involve-item h3 {
+    font-size: 1.5em;
+    color: #2e7d32;
+}
+
+.involve-item p {
+    font-size: 1.1em;
+    color: #555;
+    margin: 15px 0;
+}
+
+.involve-item .btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background: #2e7d32;
+    color: white;
+    font-size: 1.1em;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: background 0.3s ease-in-out;
+}
+
+.involve-item .btn:hover {
+    background: #1b5e20;
+}
+
+/* Hover Effect */
+.involve-item:hover {
+    transform: scale(1.05);
+}
+
+footer {
+    display: block;
+    background-color: rgba(17,85,204,255);
+    padding-top: 3px;
+    padding-bottom: 30px;
+}
+footer p{
+    font-family: "Afacad Flux", serif;
+    font-weight: 600;
+    color:rgba(255, 255, 255, 0.918);
+    font-size: 20px;
+    text-align: center;
+    padding-top: 0px;
+    margin: 30px 90px;
+}
+.copy {
+    font-size: 15px;
+    font-weight: 300;
+    margin-top: 70px;
+}
+.social {
+    justify-self: center;
+}

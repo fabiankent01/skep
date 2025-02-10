@@ -1,0 +1,274 @@
+@import url('https://fonts.googleapis.com/css2?family=Afacad+Flux:wght@100..1000&display=swap');
+
+body{
+    font-family: "Afacad Flux", serif;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+header {
+  display: flex;
+  justify-content: flex-start; /* Aligns items to the left */
+  align-items: center;
+  padding: 10px 30px; /* Adjusted padding */
+  background-color: black;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+.nav-link.active {
+    font-weight: bold; /* Makes the text bold */
+    color: rgb(113, 216, 119); /* Optional: Change text color */
+}
+
+/* Logo and Brand Name */
+#logo {
+  width: 40px; /* Adjust logo size */
+  height: auto;
+}
+
+#logo_name {
+  display: flex;
+  align-items: center;
+  margin-left: 15px; /* Moves text closer to logo */
+}
+
+#logo_name p {
+  margin: 0 0 0 5px; /* Adjust spacing */
+  font-family: "Afacad Flux", serif;
+  font-size: 24px; /* Increase font size */
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.918);
+}
+
+/* Navigation Menu */
+nav {
+  display: flex;
+  align-items: center;
+  gap: 30px; /* Increase spacing between links */
+  font-family: "Afacad Flux", serif; /* Matches company name font */
+  margin-left: auto; /* Pushes nav to the right */
+}
+
+.nav-link {
+  text-decoration: none;
+  color: #fff;
+  font-size: 19px;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+  color: #b8b8b8; /* Hover effect */
+}
+
+/* Dropdown Menu */
+.nav-item {
+  position: relative;
+}
+
+.nav-item > .nav-link::after {
+  content: '\2BC6'; /* Unicode for a downward caret ▼ */
+  font-size: 12px;
+  margin-left: 5px;
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: #000000fb; /* Darker background */
+  min-width: 160px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.nav-item:hover .dropdown-menu {
+  display: block;
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.dropdown-menu a {
+  color: #fff;
+  padding: 10px;
+  display: block;
+  transition: background 0.3s ease;
+  text-decoration: none;
+}
+
+.dropdown-menu a:hover {
+  background: #050303; /* Hover effect */
+  color: #b8b8b8;
+}
+
+.box1 {
+    position: relative; /* Establishes a positioning context for the overlay */
+    width: 100%; /* Adjust to desired size */
+}
+.title{
+    position: absolute; /* Allows overlay to stack on top of the image */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(8, 8, 8, 0.541); /* Black with 50% opacity */
+    justify-content: center; /* Horizontally center text */
+    z-index: 2; /* Ensure it appears on top of the image */
+}
+#title {
+    font-family: "Afacad Flux", serif;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.918);
+    font-size: 70px;
+    margin: 100px 50px;
+    line-height: 1;
+    text-align: left;
+}
+.title p {
+    font-family: "Afacad Flux", serif;
+    font-weight: 600;
+    color:rgba(255, 255, 255, 0.918);
+    font-size: 20px;
+    text-align: left;
+    margin: -70px 50px;
+}
+.cows{
+    width: 100%; /* Make image responsive */
+    height: auto; /* Maintain aspect ratio */
+    display: block;
+}
+.product-block {
+    padding: 20px;
+    margin: -20px 0px 30px 0px;
+    font-family: "Afacad Flux", serif;
+    font-weight: 600;
+    font-size: 20px;
+    text-align: center;
+    background-color: #2e7d32;
+    color: white;
+}
+.animal-farming {
+    text-align: center;
+    padding: 50px 20px;
+}
+.farming-grid {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 1200px;
+    margin: auto;
+}
+.farming-item {
+    width: 100%;
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+    margin-bottom: 20px;
+}
+
+.farming-item img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    padding: 5px;
+}
+.info {
+    padding: 15px;
+}
+.info p {
+    text-align: left;
+}
+
+h2 {
+    font-size: 2.1em;
+    margin-top: -20px;
+    margin-bottom: 20px;
+    color: #2e7d32;
+}
+
+.section {
+    text-align: center;
+    padding: 50px 20px;
+}
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    max-width: 1200px;
+    margin: auto;
+}
+.grid-item {
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+}
+.grid-item img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    padding: 5px;
+}
+.info2 {
+    padding: 10px;
+}
+.order-button, .consult-button, .register-button {
+    display: block;
+    width: 200px;
+    margin: 20px auto;
+    padding: 10px;
+    background-color: #28a745;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    font-size: 18px;
+    border-radius: 5px;
+    transition: background 0.3s;
+}
+.order-button:hover, .consult-button:hover, .register-button:hover {
+    background-color: #218838;
+    transform: scale(1.05);
+}
+.consultation-section {
+    margin-top: 30px;
+    text-align: center;
+}
+
+.section.crop-farming, .section.training {
+    background-color: #ecececf6;
+    padding: 40px 20px;
+}
+
+footer {
+    display: block;
+    background-color: rgba(17,85,204,255);
+    padding-top: 3px;
+    padding-bottom: 30px;
+}
+footer p{
+    font-family: "Afacad Flux", serif;
+    font-weight: 600;
+    color:rgba(255, 255, 255, 0.918);
+    font-size: 20px;
+    text-align: center;
+    padding-top: 0px;
+    margin: 30px 90px;
+}
+.copy {
+    font-size: 15px;
+    font-weight: 300;
+    margin-top: 70px;
+}
+.social {
+    justify-self: center;
+}

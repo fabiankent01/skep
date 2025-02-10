@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout</title>
+    <link rel="stylesheet" href="styles/checkout.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <h1>Checkout</h1>
+    </header>
+
+    <!-- Progress Indicator -->
+    <div id="progress-indicator">
+        <span class="step active">Shipping</span>
+        <span class="step">Payment</span>
+        <span class="step">Review</span>
+    </div>
+
+    <main id="checkout-main">
+        <!-- Order Summary -->
+        <section id="order-summary">
+            <h2>Order Summary</h2>
+            <ul id="checkout-cart-items"></ul>
+            <p><strong>Total Price:</strong> $<span id="checkout-total-price">0.00</span></p>
+
+            <!-- Coupon Code Section -->
+            <div id="coupon-section">
+                <input type="text" id="coupon-code" placeholder="Enter Coupon Code">
+                <button id="apply-coupon">Apply</button>
+                <p id="coupon-message"></p>
+            </div>
+        </section>
+
+        <!-- Shipping Information -->
+        <section id="shipping-info">
+            <h2>Shipping Information</h2>
+            <form id="checkout-form">
+                <label for="name">Full Name:</label>
+                <input type="text" id="name" required placeholder="Enter your full name" autocomplete="name">
+                
+                <label for="email">Email:</label>
+                <input type="email" id="email" required placeholder="Enter your email" autocomplete="email">
+                
+                <label for="phone">Phone Number:</label>
+                <input type="tel" id="phone" required placeholder="Enter your phone number" autocomplete="tel">
+                
+                <label for="address">Shipping Address:</label>
+                <textarea id="address" required placeholder="Enter your shipping address" autocomplete="street-address"></textarea>
+            </form>
+        </section>
+
+        <!-- Payment Options -->
+        <section id="payment-method">
+            <h2>Payment Method</h2>
+            <label><input type="radio" name="payment" value="card" checked> <i class="fa-solid fa-credit-card"></i> Credit/Debit Card</label>
+            <label><input type="radio" name="payment" value="paypal"> <i class="fa-brands fa-paypal"></i> PayPal</label>
+            <label><input type="radio" name="payment" value="cod"> <i class="fa-solid fa-money-bill"></i> Cash on Delivery</label>
+        </section>
+
+        <!-- Place Order Button -->
+        <button id="place-order-button">Place Order</button>
+    </main>
+
+    <!-- Order Confirmation Modal -->
+    <div id="order-confirmation" class="hidden">
+        <p>Thank you for your order! Your order has been placed successfully.</p>
+        <button onclick="closeConfirmation()">OK</button>
+    </div>
+
+    <script src="scripts/checkout.js"></script>
+</body>
+</html>

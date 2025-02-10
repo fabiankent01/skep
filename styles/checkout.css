@@ -1,0 +1,192 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+}
+
+#checkout-main {
+    max-width: 600px;
+    width: 100%;
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 0.5s ease-in-out;
+    margin-top: 10px; /* Ensures spacing between progress bar and form */
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Coupon Section */
+#coupon-section {
+    margin-top: 15px;
+    display: flex;
+    gap: 10px;
+}
+
+#coupon-code {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+#apply-coupon {
+    background: #28a745;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#apply-coupon:hover {
+    background: #218838;
+}
+
+#coupon-message {
+    margin-top: 5px;
+    font-size: 14px;
+    color: red;
+}
+
+/* Progress Indicator */
+#progress-indicator {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 600px;
+    margin-bottom: 30px;
+    position: relative;
+    z-index: 10; /* Ensure it stays on top */
+    background: white;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.step {
+    flex: 1;
+    text-align: center;
+    padding: 10px;
+    border-bottom: 3px solid lightgray;
+    font-weight: bold;
+    color: gray;
+}
+
+.step.active {
+    border-bottom: 3px solid #28a745;
+    color: #28a745;
+}
+
+h2 {
+    border-bottom: 2px solid #28a745;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+.input-container {
+    position: relative;
+}
+
+.input-container i {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: gray;
+}
+
+input, textarea {
+    width: 100%;
+    padding: 12px 12px 12px 35px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    transition: all 0.3s;
+}
+
+input:focus, textarea:focus {
+    border-color: #28a745;
+    outline: none;
+    box-shadow: 0 0 5px rgba(40, 167, 69, 0.5);
+}
+
+label {
+    font-weight: bold;
+    display: block;
+    margin-top: 10px;
+}
+
+.payment-option {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.payment-option:hover, .payment-option input:checked + label {
+    background: #28a745;
+    color: white;
+}
+
+.payment-option i {
+    font-size: 20px;
+}
+
+#place-order-button {
+    width: 100%;
+    padding: 15px;
+    background: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background 0.3s, transform 0.2s;
+}
+
+#place-order-button:hover {
+    background: #218838;
+    transform: scale(1.05);
+}
+
+#order-confirmation {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+/* Mobile Optimization */
+@media (max-width: 768px) {
+    #checkout-main {
+        padding: 15px;
+    }
+    input, textarea {
+        padding: 10px 10px 10px 30px;
+    }
+    .step {
+        font-size: 14px;
+        padding: 8px;
+    }
+}
