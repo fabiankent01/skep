@@ -1,32 +1,69 @@
-// Toggle password visibility
-document.getElementById('togglePassword').addEventListener('click', function() {
-  const passwordField = document.getElementById('password');
-  const type = passwordField.type === 'password' ? 'text' : 'password';
-  passwordField.type = type;
-  this.classList.toggle('fa-eye-slash');
-});
+document.addEventListener("DOMContentLoaded", function () {
+  const loginForm = document.getElementById("login-form");
+  const signupForm = document.getElementById("signup-form");
+  const toggleText = document.getElementById("toggle-text");
+  const formTitle = document.getElementById("form-title");
 
-// Form validation
-document.getElementById('login-form').addEventListener('submit', function(event) {
-  event.preventDefault();
-  const email = document.getElementById('email').value;
-  const password = document.getElementById('password').value;
-  
-  // Simple validation
-  if (!email || !password) {
-    document.getElementById('error-message').textContent = 'Please fill in both fields.';
-    document.getElementById('error-message').style.color = 'red';
-  } else {
-    // Process login (e.g., send to server)
-    document.getElementById('error-message').textContent = '';
+  function toggleForms() {
+      if (loginForm.classList.contains("hidden")) {
+          loginForm.classList.remove("hidden");
+          signupForm.classList.add("hidden");
+          formTitle.textContent = "Login";
+          toggleText.innerHTML = `Don't have an account? <a href="#" id="toggle-form">Sign Up</a>`;
+      } else {
+          loginForm.classList.add("hidden");
+          signupForm.classList.remove("hidden");
+          formTitle.textContent = "Sign Up";
+          toggleText.innerHTML = `Already have an account? <a href="#" id="toggle-form">Login</a>`;
+      }
+      attachToggleEvent();
   }
-});
 
-// Handle social login (simplified for now)
-document.querySelector('.google').addEventListener('click', function() {
-  alert("Google login clicked");
-});
+  function attachToggleEvent() {
+      document.getElementById("toggle-form").addEventListener("click", function (e) {
+          e.preventDefault();
+          toggleForms();
+      });
+  }
 
-document.querySelector('.facebook').addEventListener('click', function() {
-  alert("Facebook login clicked");
+  attachToggleEvent(); // Attach the event on page load
+
+  // Login Validation
+  loginForm.addEventListener("submit", function (event) {
+      event.preventDefault();
+      let email = document.getElementById("login-email").value.trim();
+      let password = document.getElementById("login-password").value.trim();
+
+      if (!email || !password) {
+          alert("Please fill in both fields.");
+          return;
+      }
+
+      alert("Login successful! (Backend required)");
+  });
+
+  // Signup Validation
+  signupForm.addEventListener("submit", function (event) {
+      event.preventDefault();
+      let email = document.getElementById("signup-email").value.trim();
+      let password = document.getElementById("signup-password").value.trim();
+      let confirmPassword = document.getElementById("confirm-password").value.trim();
+
+      if (!email || !password || !confirmPassword) {
+          alert("Please fill in all fields.");
+          return;
+      }
+
+      if (password.length < 6) {
+          alert("Password must be at least 6 characters.");
+          return;
+      }
+
+      if (password !== confirmPassword) {
+          alert("Passwords do not match!");
+          return;
+      }
+
+      alert("Signup successful! (Backend required)");
+  });
 });
