@@ -105,7 +105,48 @@ nav {
   background: #050303; /* Hover effect */
   color: #b8b8b8;
 }
+/* Auth Buttons */
+.auth-buttons {
+  display: flex;
+  gap: 15px;
+}
 
+.btn {
+  text-decoration: none;
+  padding: 10px 20px;
+  border-radius: 25px;
+  font-weight: bold;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* Login Button */
+.login-btn {
+  border: 2px solid #33af3a;
+  color: #33af3a;
+}
+
+.login-btn:hover {
+  background-color: #2e7d32;
+  color: #ecf0f1;
+}
+
+/* Sign Up Button */
+.signup-btn {
+  background-color: #2e7d32;
+  color: #ecf0f1;
+}
+
+.signup-btn:hover {
+  background-color: #33af3a;
+}
+.user-info {
+  font-size: 19px;
+  font-weight: bold;
+  color: #fff;
+}
+#user-name {
+  padding: 13px 5px 0 0;
+}
 .box1 {
     position: relative; /* Establishes a positioning context for the overlay */
     width: 100%; /* Adjust to desired size */
@@ -495,7 +536,7 @@ nav {
   
 footer {
     display: block;
-    background-color: rgba(17,85,204,255);
+    background-color: #2c2c2c;
     padding-top: 3px;
     padding-bottom: 30px;
 }

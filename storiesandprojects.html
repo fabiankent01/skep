@@ -13,17 +13,23 @@
             <img id="logo" src="images/logo.webp" alt="terra-balance logo">
         </a>
         <div id="logo_name"><p>Terra Balance Enterprises</p></div>
-        <nav id="nav"> 
+        <nav id="nav">
             <a href="homepage.html" class="nav-link">Home</a>
-            
             <a href="services.html" class="nav-link">OurServices</a>
-            
             <a href="product_page.html" class="nav-link">Products</a>
-
             <a href="storiesandprojects.html" class="nav-link">Stories&Projects</a>
-
             <a href="contactus.html" class="nav-link">ContactUs</a>
-        </nav>
+          
+            <div class="auth-buttons" id="auth-buttons">
+              <a href="login_form.html" class="btn login-btn">Login</a>
+              <a href="login_form.html" class="btn signup-btn">Sign Up</a>
+            </div>
+          
+            <div class="user-info" id="user-info" style="display: none;">
+              <span id="user-name">Welcome, <span id="user-display-name">Guest</span>!</span>
+              <a href="#" id="logout-btn" class="btn login-btn">Logout</a>
+            </div>
+          </nav>
     </header>
     
     
@@ -179,6 +185,7 @@
             </a>
         </div>
     </footer>
+    <script src="scripts/auth.js"></script>
     <script src="scripts/carousel.js"></script>
     <script src="scripts/active.js"></script>
 </body>

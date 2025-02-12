@@ -106,7 +106,49 @@ nav {
   background: #050303; /* Hover effect */
   color: #b8b8b8;
 }
+/* Auth Buttons */
+.auth-buttons {
+    display: flex;
+    gap: 15px;
+  }
+  
+  .btn {
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-weight: bold;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  
+  /* Login Button */
+  .login-btn {
+    border: 2px solid #33af3a;
+    color: #33af3a;
+  }
+  
+  .login-btn:hover {
+    background-color: #2e7d32;
+    color: #ecf0f1;
+  }
+  
+  /* Sign Up Button */
+  .signup-btn {
+    background-color: #2e7d32;
+    color: #ecf0f1;
+  }
+  
+  .signup-btn:hover {
+    background-color: #33af3a;
+  }
 
+  .user-info {
+    font-size: 19px;
+    font-weight: bold;
+    color: #fff;
+  }
+  #user-name {
+    padding: 13px 5px 0 0;
+  }
 .box1 {
     position: relative; /* Establishes a positioning context for the overlay */
     width: 100%; /* Adjust to desired size */
@@ -428,7 +470,7 @@ h1 {
 
 footer {
     display: block;
-    background-color: rgba(17,85,204,255);
+    background-color: #2c2c2c;
     padding-top: 3px;
     padding-bottom: 30px;
 }
@@ -450,6 +492,154 @@ footer p{
     justify-self: center;
 }
 
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 10px 15px;
+    }
+
+    #logo {
+        width: 35px;
+    }
+
+    #logo_name p {
+        font-size: 20px;
+    }
+
+    nav {
+        flex-direction: column;
+        gap: 10px;
+        width: 100%;
+        margin-left: 0;
+    }
+
+    .nav-link {
+        font-size: 16px;
+        padding: 8px 0;
+    }
+
+    .auth-buttons {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .box1 {
+        height: auto;
+    }
+
+    #title {
+        font-size: 40px;
+        margin: 50px 20px;
+        text-align: center;
+    }
+
+    .title p {
+        font-size: 16px;
+        margin: 10px 20px;
+        text-align: center;
+    }
+
+    .about-content {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .text, .image {
+        max-width: 100%;
+    }
+
+    .services-grid, .image-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .grid {
+        grid-template-columns: 1fr;
+    }
+
+    h1 {
+        font-size: 2em;
+    }
+
+    .container p, .address p {
+        font-size: 1em;
+        padding: 0 10px;
+    }
+
+    footer p {
+        font-size: 16px;
+        margin: 20px;
+    }
+
+    .copy {
+        font-size: 12px;
+    }
+
+    .map-container iframe {
+        height: 300px;
+    }
+}
+
+@media (max-width: 480px) {
+    #title {
+        font-size: 30px;
+    }
+
+    .title p {
+        font-size: 14px;
+    }
+
+    .nav-link, .btn {
+        font-size: 14px;
+    }
+
+    .auth-buttons .btn {
+        padding: 8px 15px;
+    }
+
+    .product-block, .about, .farming-services, .three-image-section, .location-map {
+        padding: 20px 10px;
+    }
+
+    h1 {
+        font-size: 1.8em;
+    }
+
+    .grid-item img {
+        height: 150px;
+    }
+
+    .map-container iframe {
+        height: 250px;
+    }
+}
+
+/* Optional: Hide the menu on mobile and add a toggle button */
+.menu-toggle {
+    display: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: white;
+}
+.menu-toggle.active i::before {
+    content: 'x'; /* FontAwesome Unicode for close icon */
+}
 
 
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: block;
+        margin-left: auto;
+    }
 
+    nav {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background-color: black;
+    }
+
+    nav.active {
+        display: flex;
+    }
+}

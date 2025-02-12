@@ -1,69 +1,70 @@
-document.getElementById("place-order-button").addEventListener("click", function() {
-    if (validateForm()) {
-        document.getElementById("order-confirmation").style.display = "block";
+document.addEventListener('DOMContentLoaded', function () {
+    const loggedInUser = localStorage.getItem('loggedInUser');
+    const placeOrderButton = document.getElementById("place-order-button");
+    const totalPriceElement = document.getElementById("checkout-total-price");
+    const orderConfirmation = document.getElementById("order-confirmation");
+  
+    if (!loggedInUser) {
+      alert('Please log in or sign up to proceed to checkout.');
+      const currentUrl = window.location.href;
+      window.location.href = `login_form.html?redirect=${encodeURIComponent(currentUrl)}`;
     }
-});
-
-function validateForm() {
-    const name = document.getElementById("name").value;
-    const email = document.getElementById("email").value;
-    const phone = document.getElementById("phone").value;
-    const address = document.getElementById("address").value;
-    if (!name || !email || !phone || !address) {
-        alert("Please fill in all fields.");
-        return false;
-    }
-    return true;
-}
-
-function closeConfirmation() {
-    document.getElementById("order-confirmation").style.display = "none";
-    window.location.href = "index.html";
-}
-
-
-
-document.getElementById("place-order-button").addEventListener("click", function() {
-    if (validateForm()) {
-        document.getElementById("order-confirmation").style.display = "block";
-    }
-});
-
-document.getElementById("apply-coupon").addEventListener("click", function() {
-    const couponInput = document.getElementById("coupon-code").value.trim();
-    const couponMessage = document.getElementById("coupon-message");
-    let totalPrice = parseFloat(document.getElementById("checkout-total-price").innerText);
-
-    const validCoupons = {
+  
+    document.getElementById("apply-coupon").addEventListener("click", function () {
+      const couponInput = document.getElementById("coupon-code").value.trim();
+      const couponMessage = document.getElementById("coupon-message");
+      let totalPrice = parseFloat(totalPriceElement.innerText);
+  
+      const validCoupons = {
         "SAVE10": 10,  // 10% off
         "FREESHIP": 5   // Flat $5 off
-    };
-
-    if (validCoupons[couponInput]) {
+      };
+  
+      if (validCoupons[couponInput]) {
         let discount = (validCoupons[couponInput] / 100) * totalPrice;
         totalPrice -= discount;
-        document.getElementById("checkout-total-price").innerText = totalPrice.toFixed(2);
+        totalPriceElement.innerText = totalPrice.toFixed(2);
         couponMessage.style.color = "green";
         couponMessage.innerText = "Coupon applied successfully!";
-    } else {
+      } else {
         couponMessage.style.color = "red";
         couponMessage.innerText = "Invalid coupon code.";
-    }
-});
-
-function validateForm() {
-    const name = document.getElementById("name").value;
-    const email = document.getElementById("email").value;
-    const phone = document.getElementById("phone").value;
-    const address = document.getElementById("address").value;
-    if (!name || !email || !phone || !address) {
+      }
+    });
+  
+    placeOrderButton.addEventListener("click", function () {
+      if (validateForm()) {
+        placeOrderButton.disabled = true;
+        placeOrderButton.innerText = "Processing...";
+        
+        setTimeout(() => {
+          orderConfirmation.style.display = "block";
+          placeOrderButton.disabled = false;
+          placeOrderButton.innerText = "Place Order";
+        }, 1500);
+      }
+    });
+  
+    function validateForm() {
+      const name = document.getElementById("name").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const phone = document.getElementById("phone").value.trim();
+      const address = document.getElementById("address").value.trim();
+  
+      if (!name || !email || !phone || !address) {
         alert("Please fill in all fields.");
         return false;
+      }
+      if (!validateEmail(email)) {
+        alert("Please enter a valid email.");
+        return false;
+      }
+      return true;
     }
-    return true;
-}
-
-function closeConfirmation() {
-    document.getElementById("order-confirmation").style.display = "none";
-    window.location.href = "index.html";
-}
+  
+    function validateEmail(email) {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      return emailRegex.test(email);
+    }
+  });
+  
