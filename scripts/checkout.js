@@ -1,70 +1,65 @@
-document.addEventListener('DOMContentLoaded', function () {
-    const loggedInUser = localStorage.getItem('loggedInUser');
-    const placeOrderButton = document.getElementById("place-order-button");
-    const totalPriceElement = document.getElementById("checkout-total-price");
-    const orderConfirmation = document.getElementById("order-confirmation");
-  
-    if (!loggedInUser) {
-      alert('Please log in or sign up to proceed to checkout.');
-      const currentUrl = window.location.href;
-      window.location.href = `login_form.html?redirect=${encodeURIComponent(currentUrl)}`;
+document.addEventListener("DOMContentLoaded", () => {
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+    const shippingCost = 5.00;
+    let totalPrice = 0;
+
+    const checkoutItemsContainer = document.getElementById("checkout-items");
+    const checkoutTotalPrice = document.getElementById("checkout-total-price");
+    const checkoutEstimatedTotal = document.getElementById("checkout-estimated-total");
+
+    if (cart.length === 0) {
+        checkoutItemsContainer.innerHTML = "<p>Your cart is empty!</p>";
+        document.getElementById("place-order-button").disabled = true;
+    } else {
+        checkoutItemsContainer.innerHTML = cart.map(item => `
+            <li>
+                <strong>${item.name}</strong> - $${item.price.toFixed(2)} x ${item.quantity}
+            </li>
+        `).join("");
+        totalPrice = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+        checkoutTotalPrice.textContent = totalPrice.toFixed(2);
+        checkoutEstimatedTotal.textContent = (totalPrice + shippingCost).toFixed(2);
     }
-  
-    document.getElementById("apply-coupon").addEventListener("click", function () {
-      const couponInput = document.getElementById("coupon-code").value.trim();
-      const couponMessage = document.getElementById("coupon-message");
-      let totalPrice = parseFloat(totalPriceElement.innerText);
-  
-      const validCoupons = {
-        "SAVE10": 10,  // 10% off
-        "FREESHIP": 5   // Flat $5 off
-      };
-  
-      if (validCoupons[couponInput]) {
-        let discount = (validCoupons[couponInput] / 100) * totalPrice;
-        totalPrice -= discount;
-        totalPriceElement.innerText = totalPrice.toFixed(2);
-        couponMessage.style.color = "green";
-        couponMessage.innerText = "Coupon applied successfully!";
-      } else {
-        couponMessage.style.color = "red";
-        couponMessage.innerText = "Invalid coupon code.";
-      }
+
+    const visaOption = document.getElementById("visa-option");
+    const codOption = document.getElementById("cod-option");
+    const cardDetails = document.getElementById("card-details");
+    let selectedPayment = null;
+
+    visaOption.addEventListener("click", () => {
+        cardDetails.classList.remove("hidden");
+        selectedPayment = "Visa";
     });
-  
-    placeOrderButton.addEventListener("click", function () {
-      if (validateForm()) {
-        placeOrderButton.disabled = true;
-        placeOrderButton.innerText = "Processing...";
-        
-        setTimeout(() => {
-          orderConfirmation.style.display = "block";
-          placeOrderButton.disabled = false;
-          placeOrderButton.innerText = "Place Order";
-        }, 1500);
-      }
+
+    codOption.addEventListener("click", () => {
+        cardDetails.classList.add("hidden");
+        selectedPayment = "COD";
     });
-  
-    function validateForm() {
-      const name = document.getElementById("name").value.trim();
-      const email = document.getElementById("email").value.trim();
-      const phone = document.getElementById("phone").value.trim();
-      const address = document.getElementById("address").value.trim();
-  
-      if (!name || !email || !phone || !address) {
-        alert("Please fill in all fields.");
-        return false;
-      }
-      if (!validateEmail(email)) {
-        alert("Please enter a valid email.");
-        return false;
-      }
-      return true;
-    }
-  
-    function validateEmail(email) {
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      return emailRegex.test(email);
-    }
-  });
-  
+
+    document.getElementById("apply-discount-button").addEventListener("click", () => {
+        const discountInput = document.getElementById("discount-code-input").value;
+        if (discountInput === "DISCOUNT10") {
+            const discountAmount = totalPrice * 0.1;
+            totalPrice -= discountAmount;
+            checkoutEstimatedTotal.textContent = (totalPrice + shippingCost).toFixed(2);
+            alert(`Discount applied! You saved $${discountAmount.toFixed(2)}`);
+        } else {
+            alert("Invalid discount code.");
+        }
+    });
+
+    document.getElementById("place-order-button").addEventListener("click", () => {
+        const shippingForm = document.getElementById("shipping-form");
+        if (!shippingForm.checkValidity()) {
+            alert("Please fill out all required fields correctly.");
+            return;
+        }
+        if (selectedPayment === "Visa" && !document.getElementById("card-form").checkValidity()) {
+            alert("Please enter valid card details.");
+            return;
+        }
+        alert("Order placed successfully! Thank you for shopping with us.");
+        localStorage.removeItem("cart");
+        window.location.href = "product_page.html";
+    });
+});

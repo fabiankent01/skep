@@ -9,216 +9,202 @@ body {
     align-items: center;
     min-height: 100vh;
 }
-
-#checkout-main {
-    max-width: 600px;
-    width: 100%;
-    background: white;
-    padding: 25px;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    animation: fadeIn 0.5s ease-in-out;
-    margin-top: 10px; /* Ensures spacing between progress bar and form */
+img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 30%;
 }
-
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(-10px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-/* Coupon Section */
-#coupon-section {
-    margin-top: 15px;
-    display: flex;
-    gap: 10px;
-}
-
-#coupon-code {
-    flex: 1;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-}
-
-#apply-coupon {
-    background: #28a745;
+h1 {
     color: white;
-    border: none;
-    padding: 10px;
-    border-radius: 5px;
-    cursor: pointer;
+    text-align: center;
 }
-
-#apply-coupon:hover {
-    background: #218838;
-}
-
-#coupon-message {
-    margin-top: 5px;
-    font-size: 14px;
-    color: red;
-}
-
-/* Progress Indicator */
-#progress-indicator {
+#progress-bar {
     display: flex;
     justify-content: space-between;
-    width: 100%;
-    max-width: 600px;
-    margin-bottom: 30px;
-    position: relative;
-    z-index: 10; /* Ensure it stays on top */
-    background: white;
-    padding: 10px;
-    border-radius: 10px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    counter-reset: step;
+    gap: 10px;
 }
-
 .step {
-    flex: 1;
     text-align: center;
-    padding: 10px;
-    border-bottom: 3px solid lightgray;
+    flex: 1;
+    position: relative;
+    transition: all 0.3s ease;
+}
+.step::before {
+    content: counter(step);
+    counter-increment: step;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    border: 3px solid #4CAF50;
+    display: block;
+    text-align: center;
+    margin: 0 auto 10px;
+    border-radius: 50%;
+    background: white;
+    color: #4CAF50;
     font-weight: bold;
-    color: gray;
+}
+.step.active::before {
+    background: #4CAF50;
+    color: white;
+}
+.step:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    width: calc(100% - 40px);
+    height: 4px;
+    background: #4CAF50;
+    top: 18px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: -1;
+}
+.step:not(.active)::after {
+    background: #ddd;
 }
 
-.step.active {
-    border-bottom: 3px solid #28a745;
-    color: #28a745;
+#checkout-main {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
-.step.completed {
-    border-bottom: 3px solid #17a2b8;
-    color: #17a2b8;
-    animation: progressBlink 0.8s alternate infinite;
-}
-@keyframes progressBlink {
-    0% { opacity: 1; }
-    100% { opacity: 0.5; }
+
+section {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 h2 {
-    border-bottom: 2px solid #28a745;
+    border-bottom: 2px solid #ddd;
     padding-bottom: 10px;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
+    color: #333;
 }
 
-.input-container {
+.form-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+.form-control {
+    flex: 1;
+    min-width: 200px;
     position: relative;
 }
-
-.input-container i {
-    position: absolute;
-    left: 10px;
-    top: 50%;
-    transform: translateY(-50%);
-    color: gray;
-}
-
-input, textarea {
-    width: 100%;
-    padding: 12px 12px 12px 35px;
-    margin-top: 5px;
-    margin-bottom: 15px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    transition: all 0.3s;
-}
-
-input:focus, textarea:focus {
-    border-color: #28a745;
-    outline: none;
-    box-shadow: 0 0 5px rgba(40, 167, 69, 0.5);
-}
-
-label {
-    font-weight: bold;
+.form-control label {
     display: block;
-    margin-top: 10px;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+.form-control input, .form-control select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+.form-control .validation-icon {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    font-size: 18px;
+    color: green;
+    display: none;
+}
+.form-control.valid .validation-icon {
+    display: block;
+}
+
+form label {
+    display: block;
+    margin: 10px 0 5px;
+    font-weight: bold;
+    color: #555;
+}
+
+form input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
 }
 
 .payment-option {
     display: flex;
     align-items: center;
-    gap: 12px;
-    padding: 12px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: all 0.3s;
-}
-
-.payment-option:hover, .payment-option input:checked + label {
-    background: #28a745;
-    color: white;
-}
-
-.payment-option i {
-    font-size: 20px;
-}
-
-#place-order-button {
-    width: 100%;
+    justify-content: space-between;
     padding: 15px;
-    background: #28a745;
-    color: white;
-    border: none;
-    border-radius: 5px;
+    border: 2px solid transparent;
+    border-radius: 8px;
+    background: #f9f9f9;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
     cursor: pointer;
-    font-size: 16px;
-    transition: background 0.3s, transform 0.2s;
 }
-
-#place-order-button:hover {
-    background: #218838;
-    transform: scale(1.05);
+.payment-option:hover, .payment-option.selected {
+    border-color: #4CAF50;
+    background: #e8f5e9;
 }
-
-#order-confirmation {
+.payment-option i {
+    font-size: 24px;
+    color: #555;
+    margin-right: 10px;
+}
+#card-details {
     display: none;
-    position: fixed;
+    opacity: 0;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+#card-details.show {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+}
+.form-control {
+    position: relative;
+}
+.form-control input {
+    padding-right: 30px;
+}
+.form-control .validation-icon {
+    position: absolute;
     top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: white;
-    padding: 30px;
-    border-radius: 12px;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-    text-align: center;
-    width: 80%;
-    max-width: 400px;
-    animation: fadeIn 0.3s ease-in-out;
-}
-
-#order-confirmation p {
+    right: 10px;
+    transform: translateY(-50%);
     font-size: 18px;
-    margin-bottom: 20px;
+    color: green;
+    display: none;
+}
+.form-control.valid .validation-icon {
+    display: block;
 }
 
-#order-confirmation button {
-    padding: 10px 20px;
-    background: #28a745;
+button {
+    background: #4CAF50;
     color: white;
+    margin: 5px;
+    padding: 8px 20px;
     border: none;
     border-radius: 5px;
+    font-size: 16px;
     cursor: pointer;
-    transition: background 0.3s;
+    transition: background 0.3s ease;
 }
 
-#order-confirmation button:hover {
-    background: #218838;
+button:hover {
+    background: #2b6e2f;
 }
 
-/* Mobile Optimization */
-@media (max-width: 768px) {
-    #checkout-main {
-        padding: 15px;
-    }
-    input, textarea {
-        padding: 10px 10px 10px 30px;
-    }
-    .step {
-        font-size: 14px;
-        padding: 8px;
-    }
+#footer-container {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 14px;
+    color: #777;
 }

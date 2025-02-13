@@ -9,67 +9,147 @@
 </head>
 <body>
     <header>
-        <h1>Checkout</h1>
+        <div id="header-container">
+            <div id="logo">
+                <img src="images/logo.webp" alt="Company Logo">
+            </div>
+            <h1>Checkout</h1>
+        </div>
     </header>
 
-    <!-- Progress Indicator -->
-    <div id="progress-indicator">
-        <span class="step active">Shipping</span>
-        <span class="step">Payment</span>
-        <span class="step">Review</span>
+    <div id="progress-bar">
+        <div class="step active">Cart</div>
+        <div class="step active">Shipping</div>
+        <div class="step">Payment</div>
     </div>
 
     <main id="checkout-main">
-        <!-- Order Summary -->
         <section id="order-summary">
             <h2>Order Summary</h2>
-            <ul id="checkout-cart-items"></ul>
+            <ul id="checkout-items"></ul>
             <p><strong>Total Price:</strong> $<span id="checkout-total-price">0.00</span></p>
-
-            <!-- Coupon Code Section -->
-            <div id="coupon-section">
-                <input type="text" id="coupon-code" placeholder="Enter Coupon Code">
-                <button id="apply-coupon">Apply</button>
-                <p id="coupon-message"></p>
-            </div>
+            <p><strong>Shipping:</strong> $<span id="checkout-shipping-cost">5.00</span></p>
+            <p><strong>Estimated Total:</strong> $<span id="checkout-estimated-total">5.00</span></p>
         </section>
 
-        <!-- Shipping Information -->
         <section id="shipping-info">
             <h2>Shipping Information</h2>
-            <form id="checkout-form">
-                <label for="name">Full Name:</label>
-                <input type="text" id="name" required placeholder="Enter your full name" autocomplete="name">
-                
-                <label for="email">Email:</label>
-                <input type="email" id="email" required placeholder="Enter your email" autocomplete="email">
-                
-                <label for="phone">Phone Number:</label>
-                <input type="tel" id="phone" required placeholder="Enter your phone number" autocomplete="tel">
-                
-                <label for="address">Shipping Address:</label>
-                <textarea id="address" required placeholder="Enter your shipping address" autocomplete="street-address"></textarea>
+            <form id="shipping-form">
+                <div class="form-group">
+                    <div class="form-control">
+                        <label for="full-name">Full Name:</label>
+                        <input type="text" id="full-name" placeholder="John Doe" required>
+                        <i class="fas fa-check-circle validation-icon"></i>
+                    </div>
+                    <div class="form-control">
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" placeholder="example@example.com" required>
+                        <i class="fas fa-check-circle validation-icon"></i>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="form-control">
+                        <label for="address">Address:</label>
+                        <input type="text" id="address" placeholder="123 Main St" required>
+                        <i class="fas fa-check-circle validation-icon"></i>
+                    </div>
+                    <div class="form-control">
+                        <label for="city">City:</label>
+                        <input type="text" id="city" placeholder="Los Angeles" required>
+                        <i class="fas fa-check-circle validation-icon"></i>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="form-control">
+                        <label for="country">Country:</label>
+                        <select id="country" required>
+                            <option value="">Select Country</option>
+                            <option value="US">United States</option>
+                            <option value="CA">Canada</option>
+                            <option value="UK">United Kingdom</option>
+                            <option value="NG">Nigeria</option>
+                        </select>
+                    </div>
+                    <div class="form-control">
+                        <label for="phone">Phone Number:</label>
+                        <input type="tel" id="phone" placeholder="1234567890" pattern="[0-9]{10,15}" required>
+                        <i class="fas fa-check-circle validation-icon"></i>
+                    </div>
+                </div>
+                <div class="form-control">
+                    <label for="delivery-date">Preferred Delivery Date:</label>
+                    <input type="date" id="delivery-date" required>
+                </div>
             </form>
         </section>
 
-        <!-- Payment Options -->
-        <section id="payment-method">
-            <h2>Payment Method</h2>
-            <label><input type="radio" name="payment" value="card" checked> <i class="fa-solid fa-credit-card"></i> Credit/Debit Card</label>
-            <label><input type="radio" name="payment" value="paypal"> <i class="fa-brands fa-paypal"></i> PayPal</label>
-            <label><input type="radio" name="payment" value="cod"> <i class="fa-solid fa-money-bill"></i> Cash on Delivery</label>
+        <section id="payment-info">
+            <h2>Payment Options</h2>
+            <div id="payment-options">
+                <div class="payment-option" id="visa-option"><i class="fab fa-cc-visa"></i> Visa/MasterCard</div>
+                <div class="payment-option" id="cod-option"><i class="fas fa-money-bill-wave"></i> Payment on Delivery</div>
+            </div>
+            <div id="card-details" class="hidden">
+                <h3>Enter Card Details</h3>
+                <form id="card-form">
+                    <div class="form-control">
+                        <label for="card-number">Card Number:</label>
+                        <input type="text" id="card-number" maxlength="19" placeholder="XXXX XXXX XXXX XXXX" required>
+                        <i class="fas fa-check-circle validation-icon"></i>
+                    </div>
+                    <div class="form-control">
+                        <label for="expiry-date">Expiry Date (MM/YY):</label>
+                        <input type="text" id="expiry-date" pattern="(0[1-9]|1[0-2])/\d{2}" placeholder="MM/YY" required>
+                        <i class="fas fa-check-circle validation-icon"></i>
+                    </div>
+                    <div class="form-control">
+                        <label for="cvv">CVV:</label>
+                        <input type="text" id="cvv" maxlength="3" placeholder="123" required>
+                        <i class="fas fa-check-circle validation-icon"></i>
+                    </div>
+                </form>
+            </div>
         </section>
 
-        <!-- Place Order Button -->
-        <button id="place-order-button">Place Order</button>
+        <section id="discount-code">
+            <h2>Have a Discount Code?</h2>
+            <form id="discount-form">
+                <input type="text" id="discount-code-input" placeholder="Enter discount code">
+                <button type="button" id="apply-discount-button">Apply</button>
+            </form>
+        </section>
+
+        <section id="place-order">
+            <button id="place-order-button">Place Order</button>
+        </section>
     </main>
 
-    <!-- Order Confirmation Modal -->
-    <div id="order-confirmation" class="hidden">
-        <p>Thank you for your order! Your order has been placed successfully.</p>
-        <button onclick="closeConfirmation()">OK</button>
-    </div>
-    <script src="scripts/auth.js"></script>
+    <footer>
+        <div id="footer-container">
+            <p>&copy; 2025 Terra Balance Enterprise. All rights reserved.</p>
+        </div>
+    </footer>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const visaOption = document.getElementById("visa-option");
+            const codOption = document.getElementById("cod-option");
+            const cardDetails = document.getElementById("card-details");
+            let selectedPayment = null;
+
+            visaOption.addEventListener("click", () => {
+                cardDetails.classList.add("show");
+                visaOption.classList.add("selected");
+                codOption.classList.remove("selected");
+                selectedPayment = "Visa";
+            });
+
+            codOption.addEventListener("click", () => {
+                cardDetails.classList.remove("show");
+                codOption.classList.add("selected");
+                visaOption.classList.remove("selected");
+                selectedPayment = "COD";
+            });
+        });
+    </script>
     <script src="scripts/checkout.js"></script>
-</body>
 </html>
