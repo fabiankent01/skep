@@ -593,7 +593,7 @@ footer p{
     .title p {
         text-align: center;
         font-size: 15px;
-        margin: -70px 10px;
+        margin: -60px 10px 10px;
     }
     .product-block {
         font-size: 15px;
@@ -628,15 +628,32 @@ footer p{
     .map-container {
         height: 300px;
     }
+
+    footer {
+        text-align: center;
+        padding: 20px;
+    }
     footer p {
-        font-size: 15px;
+        font-size: 10px;
+        width: 100%;
+        margin: 10px 0;
+        text-align: center;
+        line-height: 1;
     }
     .copy {
-        font-size: 15px;
+        font-size: 10px;
+        margin-top: 30px;
     }
     .social {
+        display: flex;
+        justify-content: center; /* Centers the icons horizontally */
         align-items: center;
-        justify-content: center;
+        gap: 10px; /* Adds space between icons */
+        margin-top: 20px;
+    }
+    .social a {
+        display: inline-block;
+        font-size: 10px; /* Adjust size as needed */
     }
 }
 @media (min-width: 769px) and (max-width: 1024px) {
