@@ -494,7 +494,7 @@ footer p{
     justify-self: center;
 }
 
-@media (max-width: 768px) {
+@media (min-width: 320px) and (max-width: 769px) {
     header {
         flex-wrap: wrap;
         padding: 10px 15px;
