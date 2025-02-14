@@ -656,7 +656,7 @@ footer p{
     }
     .project-item {
         max-width: 100%; /* Remove the max-width limitation */
-        width: 100%;
+        width: 100%;        
     }
     .carousel {
         width: 100%;

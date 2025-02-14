@@ -372,21 +372,30 @@ footer {
     }
 
     #cart-items li {
+        display: flex;
         flex-direction: column;
-        align-items: flex-start;
-    }
-
-    .cart-item-details {
-        align-items: center;
+        align-items: center; /* Center the content */
+        gap: 10px;
+        padding: 15px;
+      }
+      
+      #cart-items img {
+        width: 100px; /* Adjust the size to fit nicely */
+        height: 100px;
+        object-fit: cover;
+        border-radius: 5px;
+        margin-bottom: 10px;
+      }
+      
+      .cart-item-details {
         text-align: center;
-        width: 100%;
-    }
-
-    .cart-item-controls {
+      }
+      
+      .cart-item-controls {
+        display: flex;
         justify-content: center;
-        width: 100%;
-        gap: 5px;
-    }
+        gap: 10px;
+      }
 
     #back-to-products {
         width: 100%;
