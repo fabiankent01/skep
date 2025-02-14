@@ -492,6 +492,7 @@ footer p{
 }
 .social {
     justify-self: center;
+    gap: 10px;
 }
 
 @media (min-width: 320px) and (max-width: 769px) {
@@ -588,12 +589,12 @@ footer p{
     #title {
         text-align: center;
         font-size: 50px;
-        margin: 90px 10px;
+        margin: 80px 10px;
     }
     .title p {
         text-align: center;
         font-size: 15px;
-        margin: -60px 10px 10px;
+        margin: -60px 20px 10px;
     }
     .product-block {
         font-size: 15px;
@@ -620,7 +621,21 @@ footer p{
         margin-bottom: -10px;
     }
     .image-grid {
-        flex-direction: column;
+        
+        gap: 15px; /* Add space between images */
+    }
+
+    .image-item {
+        width: 100%; /* Full width for each image */
+        height: 250px; /* Increase height for better visibility */
+        overflow: hidden;
+    }
+
+    .image-item img {
+        width: 300px;
+        height: 220px;
+        object-fit: cover; /* Ensures the image fills the space without distortion */
+        border-radius: 8px; /* Adds a slight border-radius for a cleaner look */
     }
     .grid {
         grid-template-columns: 1fr;
