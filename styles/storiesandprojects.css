@@ -541,7 +541,7 @@ footer p{
 .social {
     justify-self: center;
 }
-@media (min-width: 320px) and (max-width: 769px) {
+@media (min-width: 320px) and (max-width: 1300px) {
     header {
         flex-wrap: wrap;
         padding: 10px 15px;

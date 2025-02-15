@@ -496,7 +496,7 @@ footer p{
     gap: 10px;
 }
 
-@media (min-width: 320px) and (max-width: 769px) {
+@media (min-width: 320px) and (max-width: 1300px) {
     header {
         flex-wrap: wrap;
         padding: 10px 15px;
