@@ -3,6 +3,13 @@ document.addEventListener("DOMContentLoaded", () => {
     const shippingCost = 5.00;
     let totalPrice = 0;
 
+    // Check if the user is logged in
+    if (!localStorage.getItem("loggedInUser")) {
+        const currentUrl = window.location.href;
+        window.location.href = `login_form.html?redirect=${encodeURIComponent(currentUrl)}`;
+        return;
+    }
+
     const checkoutItemsContainer = document.getElementById("checkout-items");
     const checkoutTotalPrice = document.getElementById("checkout-total-price");
     const checkoutEstimatedTotal = document.getElementById("checkout-estimated-total");

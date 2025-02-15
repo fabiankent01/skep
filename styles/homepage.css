@@ -178,7 +178,7 @@ nav {
     color:rgba(255, 255, 255, 0.918);
     font-size: 20px;
     text-align: left;
-    margin: -70px 50px;
+    margin: -70px 100px 0 50px;
 }
 .cows{
     width: 100%; /* Make image responsive */
@@ -188,6 +188,7 @@ nav {
 .product-block {
     padding: 20px;
     margin: -20px 0px 30px 0px;
+    padding: 20px 20px 10px 20px;
     font-family: "Afacad Flux", serif;
     font-weight: 600;
     font-size: 20px;

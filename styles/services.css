@@ -186,7 +186,7 @@ nav {
     display: block;
 }
 .product-block {
-    padding: 20px;
+    padding: 20px 20px 10px 20px;
     margin: -20px 0px 30px 0px;
     font-family: "Afacad Flux", serif;
     font-weight: 600;
