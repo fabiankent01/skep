@@ -201,6 +201,23 @@ button {
 button:hover {
     background: #2b6e2f;
 }
+#back-to-products {
+    display: inline-block;
+    margin: 10px;
+    background-color: #28a745;
+    text-align: center;
+    justify-content: center;
+    color: white;
+    padding: 10px 55px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.2s;
+}
+#back-to-products:hover {
+    background-color: #218838;
+    transform: scale(1.05);
+}
 
 #footer-container {
     text-align: center;
