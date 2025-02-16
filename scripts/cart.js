@@ -112,12 +112,13 @@ document.getElementById("cart-icon").addEventListener("click", () => {
   window.location.href = "cart_page.html";
 });
 
-// Proceed to Checkout and Pass Total with Login Check
+// Proceed to Checkout and Pass Total with Login Check (UPDATED)
 const checkoutButton = document.getElementById("checkout-button");
 checkoutButton.addEventListener("click", function () {
-  const isLoggedIn = localStorage.getItem("userToken");  // Check if the user is logged in
+  const isLoggedIn = localStorage.getItem("loggedInUser");  // Check if the user is logged in
   if (!isLoggedIn) {
-    alert("You must log in to proceed to checkout.");
+    const currentUrl = window.location.href;
+    localStorage.setItem("redirectAfterLogin", currentUrl);  // Store the current URL
     window.location.href = "login_form.html";  // Redirect to the login page
   } else {
     const savedCart = JSON.parse(localStorage.getItem("cart")) || [];

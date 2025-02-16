@@ -77,6 +77,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
+  // Login Form Submit Handler with Redirect Logic
   loginForm.addEventListener("submit", function (event) {
     event.preventDefault();
     clearErrors();
@@ -99,13 +100,19 @@ document.addEventListener("DOMContentLoaded", function () {
       return;
     }
 
-    localStorage.setItem("loggedInUser", "User");
+    localStorage.setItem("loggedInUser", "User");  // Simulate successful login
 
-    const params = new URLSearchParams(window.location.search);
-    const redirectUrl = params.get('redirect');
-    window.location.href = redirectUrl ? redirectUrl : 'index.html';
+    // Check if there's a saved redirect URL
+    const redirectUrl = localStorage.getItem("redirectAfterLogin");
+    if (redirectUrl) {
+      localStorage.removeItem("redirectAfterLogin");  // Clear it after using
+      window.location.href = redirectUrl;  // Redirect to the saved URL
+    } else {
+      window.location.href = "index.html";  // Default to homepage
+    }
   });
 
+  // Signup Form Submit Handler
   signupForm.addEventListener("submit", function (event) {
     event.preventDefault();
     clearErrors();
@@ -139,10 +146,15 @@ document.addEventListener("DOMContentLoaded", function () {
       return;
     }
 
-    localStorage.setItem("loggedInUser", "New User");
+    localStorage.setItem("loggedInUser", "New User");  // Simulate successful signup
 
-    const params = new URLSearchParams(window.location.search);
-    const redirectUrl = params.get('redirect');
-    window.location.href = redirectUrl ? redirectUrl : 'index.html';
+    // Check if there's a saved redirect URL
+    const redirectUrl = localStorage.getItem("redirectAfterLogin");
+    if (redirectUrl) {
+      localStorage.removeItem("redirectAfterLogin");
+      window.location.href = redirectUrl;
+    } else {
+      window.location.href = "index.html";
+    }
   });
 });

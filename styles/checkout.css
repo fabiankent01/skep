@@ -204,10 +204,10 @@ button:hover {
 #back-to-products {
     display: inline-block;
     margin: 10px;
-    background-color: #28a745;
+    background-color: white;
     text-align: center;
     justify-content: center;
-    color: white;
+    color: #218838;
     padding: 10px 55px;
     border-radius: 5px;
     text-decoration: none;
@@ -216,6 +216,7 @@ button:hover {
 }
 #back-to-products:hover {
     background-color: #218838;
+    color: white;
     transform: scale(1.05);
 }
 
