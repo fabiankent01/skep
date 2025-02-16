@@ -103,7 +103,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const params = new URLSearchParams(window.location.search);
     const redirectUrl = params.get('redirect');
-    window.location.href = redirectUrl ? redirectUrl : 'homepage.html';
+    window.location.href = redirectUrl ? redirectUrl : 'index.html';
   });
 
   signupForm.addEventListener("submit", function (event) {
