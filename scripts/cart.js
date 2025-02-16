@@ -127,3 +127,60 @@ checkoutButton.addEventListener("click", function () {
     window.location.href = "checkout_page.html";
   }
 });
+
+checkoutButton.addEventListener("click", function () {
+  const isLoggedIn = localStorage.getItem("loggedInUser");
+
+  if (!isLoggedIn) {
+    // Create the message element
+    const messageContainer = document.createElement("div");
+    messageContainer.style.backgroundColor = "#f8d7da";
+    messageContainer.style.color = "#721c24";
+    messageContainer.style.padding = "10px 15px";
+    messageContainer.style.border = "1px solid #f5c6cb";
+    messageContainer.style.borderRadius = "5px";
+    messageContainer.style.marginBottom = "15px";
+    messageContainer.style.display = "flex";
+    messageContainer.style.justifyContent = "space-between";
+    messageContainer.style.alignItems = "center";
+    messageContainer.style.position = "relative";
+
+    // Add message text
+    const messageText = document.createElement("span");
+    messageText.textContent = "You need to log in or sign up to proceed to checkout.";
+    messageContainer.appendChild(messageText);
+
+    // Add a close button
+    const closeButton = document.createElement("button");
+    closeButton.textContent = "×";
+    closeButton.style.background = "none";
+    closeButton.style.border = "none";
+    closeButton.style.fontSize = "16px";
+    closeButton.style.fontWeight = "bold";
+    closeButton.style.color = "#721c24";
+    closeButton.style.cursor = "pointer";
+    closeButton.style.marginLeft = "10px";
+    closeButton.addEventListener("click", () => {
+      messageContainer.remove();  // Remove the message when clicked
+    });
+
+    messageContainer.appendChild(closeButton);
+    document.body.prepend(messageContainer);  // Add the message to the top of the page
+
+    // Automatically remove the message after 5 seconds
+    setTimeout(() => {
+      if (messageContainer.parentNode) {
+        messageContainer.remove();
+      }
+    }, 5000);
+
+    // Store the redirect URL for after login/signup
+    localStorage.setItem("redirectAfterLogin", "checkout_page.html");
+  } else {
+    const savedCart = JSON.parse(localStorage.getItem("cart")) || [];
+    const totalPrice = savedCart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+    localStorage.setItem("cartTotal", totalPrice.toFixed(2));
+    window.location.href = "checkout_page.html";
+  }
+});
+
