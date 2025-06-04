@@ -10,7 +10,11 @@
 <body>
     <header>
         <a id="logo_link" href="index.html">
-            <img id="logo" src="images/logo.webp" alt="terra-balance logo">
+            <picture>
+                <source srcset="images/logo.webp" media="(min-width: 1000px)">
+                <source srcset="images/logo.webp" media="(min-width: 640px)">
+                <img id="logo" src="images/logo.webp" alt="terra-balance logo" width="500" height="250">
+            </picture>
         </a>
         <div id="logo_name"><p>Terra Balance Enterprises</p></div>
 
