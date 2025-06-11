@@ -48,7 +48,12 @@
     
     
     <div class="box1">
-        <img class="cows" src="images/handshake.png" alt="cows">
+        <picture>
+            <source srcset="images/handshake.webp" media="(min-width: 1000px)">
+            <source srcset="images/handshake.webp" media="(min-width: 640px)">
+            <img class="cows" src="images/handshake.webp" alt="handshake" width="500" height="250">
+        </picture>
+
         <div class="title">
             <div id="title">Contact Us</div>
             <p>Welcome to our Services page, where we offer a range of comprehensive farming programs and support services designed to empower individuals and communities in the agricultural sector.</p>    
