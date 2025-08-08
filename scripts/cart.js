@@ -1,5 +1,4 @@
 const cart = JSON.parse(localStorage.getItem("cart")) || [];
-const cartCount = document.getElementById("cart-count");
 const shippingCost = 5.00;
 
 function addToCart(productName) {
@@ -21,6 +20,7 @@ function saveCart() {
 }
 
 function updateCart() {
+  const cartCount = document.getElementById("cart-count");
   const totalCount = cart.reduce((sum, item) => sum + item.quantity, 0);
   if (cartCount) {
     cartCount.textContent = totalCount;
@@ -46,11 +46,11 @@ function renderCartPage() {
     totalItemsElement.textContent = "0";
     totalPriceElement.textContent = "0.00";
     estimatedTotalElement.textContent = shippingCost.toFixed(2);
-    checkoutButton.disabled = true;
+    if (checkoutButton) checkoutButton.disabled = true;
     return;
   } else {
     emptyCartMessage.style.display = "none";
-    checkoutButton.disabled = false;
+    if (checkoutButton) checkoutButton.disabled = false;
   }
 
   cartItemsContainer.innerHTML = savedCart
@@ -106,81 +106,101 @@ function removeFromCart(index) {
 document.addEventListener("DOMContentLoaded", () => {
   updateCart();
   renderCartPage();
-});
 
-document.getElementById("cart-icon").addEventListener("click", () => {
-  window.location.href = "cart_page.html";
-});
-
-// Proceed to Checkout and Pass Total with Login Check (UPDATED)
-const checkoutButton = document.getElementById("checkout-button");
-checkoutButton.addEventListener("click", function () {
-  const isLoggedIn = localStorage.getItem("loggedInUser");  // Check if the user is logged in
-  if (!isLoggedIn) {
-    const currentUrl = window.location.href;
-    localStorage.setItem("redirectAfterLogin", currentUrl);  // Store the current URL
-    window.location.href = "login_form.html";  // Redirect to the login page
-  } else {
-    const savedCart = JSON.parse(localStorage.getItem("cart")) || [];
-    const totalPrice = savedCart.reduce((sum, item) => sum + item.price * item.quantity, 0);
-    localStorage.setItem("cartTotal", totalPrice.toFixed(2));
-    window.location.href = "checkout_page.html";
+  const cartIcon = document.getElementById("cart-icon");
+  if (cartIcon) {
+    cartIcon.addEventListener("click", () => {
+      window.location.href = "cart_page.html";
+    });
   }
-});
 
-checkoutButton.addEventListener("click", function () {
-  const isLoggedIn = localStorage.getItem("loggedInUser");
-
-  if (!isLoggedIn) {
-    // Create the message element
-    const messageContainer = document.createElement("div");
-    messageContainer.style.backgroundColor = "#f8d7da";
-    messageContainer.style.color = "#721c24";
-    messageContainer.style.padding = "10px 15px";
-    messageContainer.style.border = "1px solid #f5c6cb";
-    messageContainer.style.borderRadius = "5px";
-    messageContainer.style.marginBottom = "15px";
-    messageContainer.style.display = "flex";
-    messageContainer.style.justifyContent = "space-between";
-    messageContainer.style.alignItems = "center";
-    messageContainer.style.position = "relative";
-
-    // Add message text
-    const messageText = document.createElement("span");
-    messageText.textContent = "You need to log in or sign up to proceed to checkout.";
-    messageContainer.appendChild(messageText);
-
-    // Add a close button
-    const closeButton = document.createElement("button");
-    closeButton.textContent = "×";
-    closeButton.style.background = "none";
-    closeButton.style.border = "none";
-    closeButton.style.fontSize = "16px";
-    closeButton.style.fontWeight = "bold";
-    closeButton.style.color = "#721c24";
-    closeButton.style.cursor = "pointer";
-    closeButton.style.marginLeft = "10px";
-    closeButton.addEventListener("click", () => {
-      messageContainer.remove();  // Remove the message when clicked
+  const checkoutButton = document.getElementById("checkout-button");
+  if (checkoutButton) {
+    checkoutButton.addEventListener("click", function () {
+      const isLoggedIn = localStorage.getItem("loggedInUser");
+      if (!isLoggedIn) {
+        const currentUrl = window.location.href;
+        localStorage.setItem("redirectAfterLogin", currentUrl);
+        window.location.href = "login_form.html";
+      } else {
+        const savedCart = JSON.parse(localStorage.getItem("cart")) || [];
+        const totalPrice = savedCart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+        localStorage.setItem("cartTotal", totalPrice.toFixed(2));
+        window.location.href = "checkout_page.html";
+      }
     });
 
-    messageContainer.appendChild(closeButton);
-    document.body.prepend(messageContainer);  // Add the message to the top of the page
+    checkoutButton.addEventListener("click", function () {
+      const isLoggedIn = localStorage.getItem("loggedInUser");
 
-    // Automatically remove the message after 5 seconds
-    setTimeout(() => {
-      if (messageContainer.parentNode) {
-        messageContainer.remove();
+      if (!isLoggedIn) {
+        const messageContainer = document.createElement("div");
+        messageContainer.style.backgroundColor = "#f8d7da";
+        messageContainer.style.color = "#721c24";
+        messageContainer.style.padding = "10px 15px";
+        messageContainer.style.border = "1px solid #f5c6cb";
+        messageContainer.style.borderRadius = "5px";
+        messageContainer.style.marginBottom = "15px";
+        messageContainer.style.display = "flex";
+        messageContainer.style.justifyContent = "space-between";
+        messageContainer.style.alignItems = "center";
+        messageContainer.style.position = "relative";
+
+        const messageText = document.createElement("span");
+        messageText.textContent = "You need to log in or sign up to proceed to checkout.";
+        messageContainer.appendChild(messageText);
+
+        const closeButton = document.createElement("button");
+        closeButton.textContent = "×";
+        closeButton.style.background = "none";
+        closeButton.style.border = "none";
+        closeButton.style.fontSize = "16px";
+        closeButton.style.fontWeight = "bold";
+        closeButton.style.color = "#721c24";
+        closeButton.style.cursor = "pointer";
+        closeButton.style.marginLeft = "10px";
+        closeButton.addEventListener("click", () => {
+          messageContainer.remove();
+        });
+
+        messageContainer.appendChild(closeButton);
+        document.body.prepend(messageContainer);
+
+        setTimeout(() => {
+          if (messageContainer.parentNode) {
+            messageContainer.remove();
+          }
+        }, 5000);
+
+        localStorage.setItem("redirectAfterLogin", "checkout_page.html");
+      } else {
+        const savedCart = JSON.parse(localStorage.getItem("cart")) || [];
+        const totalPrice = savedCart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+        localStorage.setItem("cartTotal", totalPrice.toFixed(2));
+        window.location.href = "checkout_page.html";
       }
-    }, 5000);
-
-    // Store the redirect URL for after login/signup
-    localStorage.setItem("redirectAfterLogin", "checkout_page.html");
-  } else {
-    const savedCart = JSON.parse(localStorage.getItem("cart")) || [];
-    const totalPrice = savedCart.reduce((sum, item) => sum + item.price * item.quantity, 0);
-    localStorage.setItem("cartTotal", totalPrice.toFixed(2));
-    window.location.href = "checkout_page.html";
+    });
   }
-});
 
+  // ================================
+  // API / DATA INTEGRATION DEMO
+  // ================================
+  async function fetchProducts() {
+    try {
+      console.log("Fetching sample products from Fake Store API...");
+      const response = await fetch("https://fakestoreapi.com/products?limit=3");
+      if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
+      const data = await response.json();
+      console.log("Products received:");
+      console.table(data.map(p => ({
+        Title: p.title,
+        Price: `$${p.price}`,
+        Image: p.image
+      })));
+    } catch (error) {
+      console.error("Error fetching products:", error);
+    }
+  }
+
+  fetchProducts();
+});
